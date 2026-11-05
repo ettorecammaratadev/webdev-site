@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1a">
+<meta name="description" content="Realizzazione siti web professionali e applicazioni web personalizzate. Richiedi un preventivo gratuito.">
+<title>Web Development | Siti Web e Applicazioni</title>
+
+<style>
+:root {
+  --bg: #080d1a;
+  --bg-alt: #0b1324;
+  --card: rgba(19, 29, 48, .72);
+  --primary: #38bdf8;
+  --secondary: #818cf8;
+  --text: #f1f5f9;
+  --muted: #9aa9bf;
+  --border: #243249;
+  --radius: 16px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 6px; }
+
+.container { width: min(92%, 1150px); margin-inline: auto; }
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(8, 13, 26, .72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 66px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.nav-links { display: flex; align-items: center; gap: 6px; }
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: color .2s, background .2s;
+}
+
+.nav-links a:hover { color: var(--text); background: rgba(56, 189, 248, .1); }
+.nav-links a.nav-cta { color: #082032; background: var(--primary); font-weight: 600; margin-left: 6px; }
+.nav-links a.nav-cta:hover { background: #7dd3fc; color: #082032; }
+
+/* Hero */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 16px 105px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before, .hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .35;
+}
+.hero::before { width: 480px; height: 480px; background: var(--primary); top: -220px; left: 12%; }
+.hero::after  { width: 420px; height: 420px; background: var(--secondary); top: -120px; right: 10%; }
+
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid rgba(56, 189, 248, .35);
+  border-radius: 999px;
+  background: rgba(56, 189, 248, .08);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+}
+
+h1 {
+  font-size: clamp(36px, 6.4vw, 66px);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  margin: 24px 0;
+}
+
+h1 span {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 13px 28px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), #60a5fa);
+  color: #082032;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 8px 24px -8px rgba(56, 189, 248, .55);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), filter .25s;
+}
+
+.btn:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 14px 30px -10px rgba(56, 189, 248, .7); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+.btn-ghost:hover { border-color: var(--primary); box-shadow: none; filter: none; }
+
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+section { padding: 85px 0; }
+
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: clamp(28px, 4vw, 38px); letter-spacing: -.02em; margin-bottom: 10px; }
+.section-title p { color: var(--muted); }
+
+/* Cards */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+  transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+}
+
+.card:hover, .card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, .6);
+  box-shadow: 0 20px 40px -20px rgba(56, 189, 248, .35);
+  z-index: 5;
+}
+
+.card.featured {
+  border-color: var(--primary);
+  background: linear-gradient(180deg, rgba(56, 189, 248, .10), var(--card) 55%);
+}
+
+.popular {
+  position: absolute;
+  top: -13px;
+  right: 18px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #07182a;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.card h3 { font-size: 21px; margin-bottom: 8px; }
+
+.price { font-size: 38px; font-weight: 800; letter-spacing: -.02em; margin: 16px 0 4px; }
+.price small { font-size: 13px; color: var(--muted); font-weight: 400; letter-spacing: 0; }
+
+.card p, .card li { color: var(--muted); font-size: 14px; }
+
+.card ul { list-style: none; margin: 20px 0 24px; flex: 1; }
+.card li { margin: 12px 0; }
+
+.card li::before {
+  content: "✓";
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, .14);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.card .btn { width: 100%; text-align: center; margin-top: 0; }
+
+.dark-section { background: var(--bg-alt); }
+
+/* Tecnologie */
+.tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+.tech {
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 16px;
+  font-weight: 700;
+  transition: transform .3s var(--ease), border-color .3s;
+}
+.tech:hover { transform: translateY(-4px); border-color: var(--primary); }
+.tech span { display: block; color: var(--primary); font-size: 13px; margin-top: 6px; font-weight: 400; }
+
+/* Come funziona */
+.section-title.left-gap { margin-bottom: 40px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: step; }
+.step {
+  position: relative;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.step::before {
+  counter-increment: step;
+  content: "0" counter(step);
+  display: block;
+  font-size: 34px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+.step h3 { font-size: 18px; margin-bottom: 6px; }
+.step p { color: var(--muted); font-size: 14px; }
+
+/* FAQ */
+.faq { max-width: 800px; margin: auto; }
+
+.faq details { border-bottom: 1px solid var(--border); padding: 4px 0; }
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--primary);
+  font-size: 24px;
+  line-height: 1;
+  transition: transform .25s var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--muted); font-size: 15px; padding-bottom: 18px; }
+
+/* Contatti */
+.contact {
+  text-align: center;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(56, 189, 248, .22), transparent 55%),
+    radial-gradient(circle at 90% 100%, rgba(129, 140, 248, .25), transparent 55%),
+    #12203a;
+  border: 1px solid var(--border);
+  padding: 72px 20px;
+  border-radius: 22px;
+}
+.contact h2 { font-size: clamp(26px, 4vw, 34px); letter-spacing: -.02em; }
+.contact p { color: var(--muted); margin-top: 12px; }
+
+footer {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+}
+
+/* Tooltip informativi nelle voci dei pacchetti */
+.card li.feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.feature > span:first-of-type { flex: 1 1 auto; }
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(56, 189, 248, .6);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--primary);
+  font: italic 700 12px/1 Georgia, serif;
+  cursor: help;
+  transition: background .2s, color .2s;
+}
+
+.info-icon:hover,
+.info-icon:focus-visible,
+.info-icon[aria-expanded="true"] {
+  background: var(--primary);
+  color: #082032;
+}
+
+/* Il tooltip occupa la larghezza della voce: non esce mai dallo schermo */
+.tooltip {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 10px);
+  padding: 12px 14px;
+  transform: translateY(6px);
+  border: 1px solid rgba(56, 189, 248, .7);
+  border-radius: 10px;
+  background: #1a2539;
+  color: var(--text);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .5);
+  font-size: 12.5px;
+  line-height: 1.6;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, transform .2s var(--ease), visibility .2s;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 6px;
+  border: 6px solid transparent;
+  border-top-color: rgba(56, 189, 248, .7);
+}
+
+.info-icon:hover + .tooltip,
+.info-icon:focus-visible + .tooltip,
+.info-icon[aria-expanded="true"] + .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Animazioni allo scroll (attive solo se JS disponibile) */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 850px) {
+  .grid, .steps { grid-template-columns: repeat(2, 1fr); }
+  .tech-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid, .steps { grid-template-columns: 1fr; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero { padding: 80px 14px 70px; }
+  section { padding: 60px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+</style>
+<script>document.documentElement.classList.add("js");</script>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav aria-label="Principale">
+      <a href="#" class="logo">&lt;WebDev /&gt;</a>
+      <div class="nav-links">
+        <a href="#servizi">Servizi</a>
+        <a href="#tecnologie">Tecnologie</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contatti" class="nav-cta">Contatti</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <span class="tag">Web Development & Digital Solutions</span>
+
+  <h1>
+    Trasformo le tue idee<br>
+    in <span>progetti digitali.</span>
+  </h1>
+
+  <p>
+    Realizzo siti web moderni, veloci e professionali
+    per privati, professionisti e piccole imprese.
+    Dalla semplice pagina vetrina alle applicazioni
+    web completamente personalizzate.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#contatti" class="btn">Richiedi un preventivo</a>
+    <a href="#servizi" class="btn btn-ghost">Scopri i servizi</a>
+  </div>
+</section>
+
+<section id="servizi">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Siti Web</h2>
+      <p>Soluzioni semplici, efficaci e accessibili.</p>
+    </div>
+
+    <div class="grid">
+
+      <article class="reveal card">
+        <h3>Landing Page</h3>
+        <p>Ideale per presentare un'attività o un servizio.</p>
+        <div class="price">199 €</div>
+                <ul>
+          <li class="feature">
+            <span>Pagina singola responsive</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Pagina singola responsive" aria-describedby="tooltip-1-1">i</button>
+            <span class="tooltip" id="tooltip-1-1" role="tooltip">Il sito si adatta automaticamente a smartphone, tablet e computer, garantendo una navigazione ottimale su ogni dispositivo.</span>
+          </li>
+          <li class="feature">
+            <span>Design moderno</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Design moderno" aria-describedby="tooltip-1-2">i</button>
+            <span class="tooltip" id="tooltip-1-2" role="tooltip">Una grafica curata e professionale, studiata per valorizzare l'immagine della tua attività.</span>
+          </li>
+          <li class="feature">
+            <span>Sezione contatti</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Sezione contatti" aria-describedby="tooltip-1-3">i</button>
+            <span class="tooltip" id="tooltip-1-3" role="tooltip">Uno spazio dedicato a telefono, email, indirizzo e informazioni utili per essere contattato.</span>
+          </li>
+          <li class="feature">
+            <span>Collegamento WhatsApp</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Collegamento WhatsApp" aria-describedby="tooltip-1-4">i</button>
+            <span class="tooltip" id="tooltip-1-4" role="tooltip">Un pulsante che permette ai visitatori di contattarti direttamente su WhatsApp con un semplice clic.</span>
+          </li>
+          <li class="feature">
+            <span>SEO di base</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su SEO di base" aria-describedby="tooltip-1-5">i</button>
+            <span class="tooltip" id="tooltip-1-5" role="tooltip">Configurazione dei titoli, delle descrizioni e degli indirizzi delle pagine per aiutare Google a comprendere meglio i contenuti del tuo sito.</span>
+          </li>
+        </ul>
+        <a href="#contatti" class="btn">Richiedi informazioni</a>
+      </article>
+
+      <article class="reveal card featured">
+        <div class="popular">PIÙ RICHIESTO</div>
+        <h3>Sito Vetrina</h3>
+        <p>Perfetto per professionisti e piccole attività.</p>
+        <div class="price">399 €</div>
+                <ul>
+          <li class="feature">
+            <span>Fino a 5 pagine</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Fino a 5 pagine" aria-describedby="tooltip-2-1">i</button>
+            <span class="tooltip" id="tooltip-2-1" role="tooltip">Realizzazione di un sito composto da un massimo di 5 pagine, ad esempio Home, Chi siamo, Servizi, Galleria e Contatti, per presentare in modo completo la tua attività.</span>
+          </li>
+          <li class="feature">
+            <span>Grafica personalizzata</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Grafica personalizzata" aria-describedby="tooltip-2-2">i</button>
+            <span class="tooltip" id="tooltip-2-2" role="tooltip">Una veste grafica progettata in base alla tua attività, con colori, caratteri, immagini e disposizione degli elementi scelti per comunicare al meglio la tua identità.</span>
+          </li>
+          <li class="feature">
+            <span>Responsive design</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Responsive design" aria-describedby="tooltip-2-3">i</button>
+            <span class="tooltip" id="tooltip-2-3" role="tooltip">Il sito si adatta automaticamente a smartphone, tablet e computer, garantendo una navigazione semplice e intuitiva su qualsiasi dispositivo.</span>
+          </li>
+          <li class="feature">
+            <span>Form di contatto</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Form di contatto" aria-describedby="tooltip-2-4">i</button>
+            <span class="tooltip" id="tooltip-2-4" role="tooltip">Un modulo attraverso il quale i visitatori possono inviarti richieste di informazioni inserendo nome, email, oggetto e messaggio, senza dover aprire il proprio programma di posta.</span>
+          </li>
+          <li class="feature">
+            <span>Google Maps e social</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Google Maps e social" aria-describedby="tooltip-2-5">i</button>
+            <span class="tooltip" id="tooltip-2-5" role="tooltip">Integrazione di una mappa Google Maps per mostrare dove si trova la tua attività e collegamenti ai tuoi profili social per permettere ai visitatori di seguirti online.</span>
+          </li>
+          <li class="feature">
+            <span>SEO di base</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su SEO di base" aria-describedby="tooltip-2-6">i</button>
+            <span class="tooltip" id="tooltip-2-6" role="tooltip">Ottimizzazione iniziale delle pagine attraverso titoli, descrizioni, struttura dei contenuti e accorgimenti tecnici per aiutare i motori di ricerca a comprendere il sito.</span>
+          </li>
+        </ul>
+        <a href="#contatti" class="btn">Richiedi informazioni</a>
+      </article>
+
+      <article class="reveal card">
+        <h3>Sito Professionale</h3>
+        <p>Una presenza online completa e personalizzata.</p>
+        <div class="price">599 €</div>
+                <ul>
+          <li class="feature">
+            <span>Fino a 8-10 pagine</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Fino a 8-10 pagine" aria-describedby="tooltip-3-1">i</button>
+            <span class="tooltip" id="tooltip-3-1" role="tooltip">Realizzazione di un sito articolato in un massimo di 8-10 pagine, ideale per presentare in modo approfondito la tua attività, i servizi offerti, i progetti realizzati e le informazioni utili ai tuoi potenziali clienti.</span>
+          </li>
+          <li class="feature">
+            <span>Design personalizzato</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Design personalizzato" aria-describedby="tooltip-3-2">i</button>
+            <span class="tooltip" id="tooltip-3-2" role="tooltip">Progettazione di un'interfaccia grafica studiata appositamente per il tuo progetto, con particolare attenzione all'identità visiva, alla disposizione dei contenuti e all'esperienza di navigazione.</span>
+          </li>
+          <li class="feature">
+            <span>Animazioni ed effetti</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Animazioni ed effetti" aria-describedby="tooltip-3-3">i</button>
+            <span class="tooltip" id="tooltip-3-3" role="tooltip">Inserimento di animazioni, transizioni ed effetti visivi durante la navigazione, come elementi che compaiono allo scorrimento della pagina o pulsanti con effetti al passaggio del mouse, per rendere il sito più dinamico e coinvolgente.</span>
+          </li>
+          <li class="feature">
+            <span>Galleria immagini</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Galleria immagini" aria-describedby="tooltip-3-4">i</button>
+            <span class="tooltip" id="tooltip-3-4" role="tooltip">Una sezione dedicata alle immagini della tua attività, dei tuoi prodotti o dei tuoi lavori. Le fotografie vengono organizzate in una galleria facilmente consultabile dai visitatori.</span>
+          </li>
+          <li class="feature">
+            <span>SEO e performance</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su SEO e performance" aria-describedby="tooltip-3-5">i</button>
+            <span class="tooltip" id="tooltip-3-5" role="tooltip">Ottimizzazione della struttura delle pagine, dei contenuti e degli aspetti tecnici del sito. Vengono inoltre curati i tempi di caricamento, le immagini e il codice per offrire una navigazione più veloce ed efficiente.</span>
+          </li>
+          <li class="feature">
+            <span>Google Analytics</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Google Analytics" aria-describedby="tooltip-3-6">i</button>
+            <span class="tooltip" id="tooltip-3-6" role="tooltip">Integrazione di Google Analytics 4 per raccogliere informazioni sulle visite al sito, come il numero di utenti, le pagine visualizzate, la provenienza del traffico e le interazioni. La configurazione tiene conto degli obblighi applicabili in materia di privacy e consenso.</span>
+          </li>
+        </ul>
+        <a href="#contatti" class="btn">Richiedi informazioni</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Applicazioni Web</h2>
+      <p>Soluzioni software sviluppate su misura.</p>
+    </div>
+
+    <div class="grid">
+
+      <article class="reveal card">
+        <h3>Applicazione Basic</h3>
+        <p>Per gestire dati, utenti e operazioni aziendali.</p>
+        <div class="price">1.200 € <small>da</small></div>
+                <ul>
+          <li class="feature">
+            <span>Backend Java / Spring Boot</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Backend Java / Spring Boot" aria-describedby="tooltip-4-1">i</button>
+            <span class="tooltip" id="tooltip-4-1" role="tooltip">Realizzazione della parte interna dell’applicazione utilizzando Java e Spring Boot. Gestisce la logica del software, elabora le richieste, applica le regole operative e comunica con il database.</span>
+          </li>
+          <li class="feature">
+            <span>Frontend Angular</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Frontend Angular" aria-describedby="tooltip-4-2">i</button>
+            <span class="tooltip" id="tooltip-4-2" role="tooltip">Sviluppo dell'interfaccia grafica utilizzando Angular. È la parte dell'applicazione con cui interagisce direttamente l'utente, attraverso schermate, pulsanti, moduli e tabelle per visualizzare e gestire le informazioni.</span>
+          </li>
+          <li class="feature">
+            <span>Database relazionale</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Database relazionale" aria-describedby="tooltip-4-3">i</button>
+            <span class="tooltip" id="tooltip-4-3" role="tooltip">Creazione e configurazione di un database strutturato per archiviare le informazioni dell’applicazione, come utenti, prodotti, ordini o altri dati. Le informazioni vengono organizzate in tabelle collegate tra loro.</span>
+          </li>
+          <li class="feature">
+            <span>Autenticazione utenti</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Autenticazione utenti" aria-describedby="tooltip-4-4">i</button>
+            <span class="tooltip" id="tooltip-4-4" role="tooltip">Implementazione di un sistema di accesso tramite credenziali personali, come email e password. Consente agli utenti registrati di autenticarsi e accedere alle funzionalità riservate.</span>
+          </li>
+          <li class="feature">
+            <span>Operazioni CRUD</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Operazioni CRUD" aria-describedby="tooltip-4-5">i</button>
+            <span class="tooltip" id="tooltip-4-5" role="tooltip">Funzionalità per gestire i dati attraverso quattro operazioni fondamentali: creare nuove informazioni, visualizzare quelle esistenti, modificarle ed eliminarle. Ad esempio, inserire, consultare, aggiornare o cancellare un prodotto.</span>
+          </li>
+        </ul>
+        <a href="#contatti" class="btn">Richiedi preventivo</a>
+      </article>
+
+      <article class="reveal card">
+        <h3>Applicazione Advanced</h3>
+        <p>Applicazioni con funzionalità più articolate.</p>
+        <div class="price">2.500 € <small>da</small></div>
+                <ul>
+          <li class="feature">
+            <span>Backend Java / Spring Boot</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Backend Java / Spring Boot" aria-describedby="tooltip-5-1">i</button>
+            <span class="tooltip" id="tooltip-5-1" role="tooltip">Sviluppo della componente server utilizzando Java e Spring Boot. Gestisce le elaborazioni, le regole aziendali, la comunicazione con il database e le funzionalità dell’applicazione.</span>
+          </li>
+          <li class="feature">
+            <span>Frontend Angular</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Frontend Angular" aria-describedby="tooltip-5-2">i</button>
+            <span class="tooltip" id="tooltip-5-2" role="tooltip">Realizzazione dell’interfaccia utente con Angular, con schermate interattive, componenti riutilizzabili e funzionalità personalizzate per utilizzare il software attraverso un’interfaccia intuitiva e organizzata.</span>
+          </li>
+          <li class="feature">
+            <span>Gestione ruoli e permessi</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Gestione ruoli e permessi" aria-describedby="tooltip-5-3">i</button>
+            <span class="tooltip" id="tooltip-5-3" role="tooltip">Possibilità di assegnare ruoli differenti agli utenti, definendo quali funzionalità e informazioni possono visualizzare o utilizzare. Ad esempio, un amministratore può gestire tutto il sistema, mentre un operatore accede solo alle funzioni di propria competenza.</span>
+          </li>
+          <li class="feature">
+            <span>Dashboard amministrativa</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Dashboard amministrativa" aria-describedby="tooltip-5-4">i</button>
+            <span class="tooltip" id="tooltip-5-4" role="tooltip">Un pannello di controllo dedicato agli amministratori, attraverso il quale monitorare e gestire le principali attività del sistema. Può includere riepiloghi, statistiche, tabelle, indicatori e strumenti per amministrare utenti e informazioni.</span>
+          </li>
+          <li class="feature">
+            <span>Integrazione API esterne</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Integrazione API esterne" aria-describedby="tooltip-5-5">i</button>
+            <span class="tooltip" id="tooltip-5-5" role="tooltip">Collegamento dell’applicazione con servizi e piattaforme di terze parti attraverso API. Permette di scambiare dati con altri sistemi, ad esempio servizi di pagamento, gestionali o piattaforme di notifiche, in base alle esigenze del progetto e alle API disponibili.</span>
+          </li>
+        </ul>
+        <a href="#contatti" class="btn">Richiedi preventivo</a>
+      </article>
+
+      <article class="reveal card">
+        <h3>Progetti Enterprise</h3>
+        <p>Soluzioni complesse progettate su misura.</p>
+        <div class="price">Su misura</div>
+                <ul>
+          <li class="feature">
+            <span>Architetture personalizzate</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Architetture personalizzate" aria-describedby="tooltip-6-1">i</button>
+            <span class="tooltip" id="tooltip-6-1" role="tooltip">Progettazione della struttura tecnica del software in base alle esigenze specifiche dell’azienda. Vengono definite le componenti, le modalità di comunicazione e l’organizzazione del sistema, tenendo conto di complessità, sicurezza, prestazioni e possibilità di crescita.</span>
+          </li>
+          <li class="feature">
+            <span>Sistemi gestionali</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Sistemi gestionali" aria-describedby="tooltip-6-2">i</button>
+            <span class="tooltip" id="tooltip-6-2" role="tooltip">Sviluppo di software personalizzati per centralizzare e semplificare la gestione aziendale. È possibile realizzare strumenti per amministrare clienti, prodotti, ordini, magazzino, documenti, attività e processi operativi in un unico ambiente.</span>
+          </li>
+          <li class="feature">
+            <span>Integrazioni avanzate</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Integrazioni avanzate" aria-describedby="tooltip-6-3">i</button>
+            <span class="tooltip" id="tooltip-6-3" role="tooltip">Collegamento del software con più sistemi, piattaforme e servizi esterni per automatizzare lo scambio di informazioni e coordinare processi differenti. Le integrazioni vengono progettate in base alle necessità e alle caratteristiche dei sistemi coinvolti.</span>
+          </li>
+          <li class="feature">
+            <span>Applicazioni multiutente</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Applicazioni multiutente" aria-describedby="tooltip-6-4">i</button>
+            <span class="tooltip" id="tooltip-6-4" role="tooltip">Sviluppo di applicazioni utilizzabili contemporaneamente da più utenti, anche appartenenti a reparti o organizzazioni differenti. Ogni utente può disporre di credenziali, ruoli e autorizzazioni specifiche.</span>
+          </li>
+          <li class="feature">
+            <span>Analisi e progettazione</span>
+            <button type="button" class="info-icon" aria-label="Informazioni su Analisi e progettazione" aria-describedby="tooltip-6-5">i</button>
+            <span class="tooltip" id="tooltip-6-5" role="tooltip">Fase iniziale in cui vengono analizzate le esigenze aziendali, definiti gli obiettivi, individuate le funzionalità necessarie e progettata la soluzione tecnica. Permette di stabilire una struttura chiara del progetto prima dello sviluppo.</span>
+          </li>
+        </ul>
+        <a href="#contatti" class="btn">Parliamone</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="tecnologie">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Le tecnologie utilizzate</h2>
+      <p>Strumenti moderni per realizzare progetti affidabili.</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech">HTML / CSS<span>Struttura e design</span></div>
+      <div class="tech">JavaScript<span>Interattività</span></div>
+      <div class="tech">Angular<span>Frontend</span></div>
+      <div class="tech">Java<span>Backend</span></div>
+      <div class="tech">Spring Boot<span>API e servizi</span></div>
+      <div class="tech">SQL<span>Database</span></div>
+      <div class="tech">Git<span>Versionamento</span></div>
+      <div class="tech">Cloud Hosting<span>Pubblicazione online</span></div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-title">
+      <h2>Come funziona?</h2>
+      <p>Un percorso semplice, dalla prima idea alla pubblicazione.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Analisi</h3><p>Una breve analisi delle tue esigenze per capire obiettivi e priorità.</p></div>
+      <div class="step reveal"><h3>Preventivo</h3><p>Definiamo insieme funzionalità, grafica e obiettivi. Una volta approvato il preventivo si parte.</p></div>
+      <div class="step reveal"><h3>Sviluppo e pubblicazione</h3><p>Realizzo il progetto, lo testiamo insieme e lo pubblico online.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section" id="faq">
+  <div class="container">
+    <div class="section-title">
+      <h2>Domande frequenti</h2>
+    </div>
+
+    <div class="faq">
+
+      <details>
+        <summary>I prezzi includono dominio e hosting?</summary>
+        <p> No. I costi di dominio, hosting e servizi esterni sono generalmente a carico del cliente. Posso occuparmi della configurazione iniziale. </p>
+      </details>
+
+      <details>
+        <summary>Quanto tempo serve per realizzare un sito?</summary>
+        <p> Una landing page può richiedere pochi giorni, mentre un sito più articolato o un'applicazione personalizzata richiedono tempi da concordare. </p>
+      </details>
+
+      <details>
+        <summary>Posso richiedere modifiche successivamente?</summary>
+        <p> Certamente. È possibile concordare interventi aggiuntivi e un eventuale servizio di manutenzione. </p>
+      </details>
+
+      <details>
+        <summary>È possibile realizzare un progetto personalizzato?</summary>
+        <p> Sì. Ogni idea può essere valutata e trasformata in un progetto su misura, con preventivo dedicato. </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="container">
+    <div class="contact">
+      <h2>Hai un progetto in mente?</h2>
+      <p>
+        Raccontami la tua idea. Valuteremo insieme
+        la soluzione migliore per realizzarla.
+      </p>
+      <!-- TODO: sostituisci con il tuo indirizzo email reale -->
+      <a href="mailto:ettorecammarata.dev@gmail.com?subject=Richiesta%20preventivo" class="btn">
+        Contattami per un preventivo
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 WebDev - Realizzazione Siti Web e Applicazioni.</p>
+  <p>Prezzi indicativi. Ogni progetto viene valutato singolarmente.</p>
+</footer>
+
+<script>
+(function () {
+  // Tooltip: apertura con tocco/clic, chiusura con Esc o clic fuori (funziona anche su touch)
+  var icons = document.querySelectorAll('.info-icon');
+  function closeAll(except) {
+    icons.forEach(function (i) { if (i !== except) i.setAttribute('aria-expanded', 'false'); });
+  }
+  icons.forEach(function (icon) {
+    icon.setAttribute('aria-expanded', 'false');
+    icon.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = icon.getAttribute('aria-expanded') === 'true';
+      closeAll(icon);
+      icon.setAttribute('aria-expanded', String(!open));
+    });
+  });
+  document.addEventListener('click', function () { closeAll(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+
+  // Animazioni allo scroll
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('visible'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
